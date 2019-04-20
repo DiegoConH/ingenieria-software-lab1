@@ -17,11 +17,13 @@ public class ClientController {
 
     private final ReportService _reportService;
     private final ClientService _clientService;
+    private final ServletContext _servletContext;
 
     @Autowired
-    public ClientController(ReportService reportService, ClientService clientService) {
+    public ClientController(ReportService reportService, ClientService clientService, ServletContext servletContext) {
         this._reportService = reportService;
         this._clientService = clientService;
+        this._servletContext = servletContext;
     }
 
     @GetMapping("/porid")
@@ -66,11 +68,11 @@ public class ClientController {
 
 
 
-    //@GetMapping("/generarReporteClientes")
-    //public String generateReport() {
-       // return this._reportService.generateReport(this._clientService.gClientes(), _servletContext);
-    //}
-
+    @GetMapping("/generarReporteClientes")
+    public String generateReport() {
+       return this._reportService.generateReport(this._clientService.gClientes(), _servletContext);
+    }
+        //diego
 
 
 }
