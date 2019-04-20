@@ -1,11 +1,11 @@
-package gt.edu.umg.ingenieria.sistemas.laboratorio1;
+package gt.edu.umg.ingenieria.sistemas.laboratorio1.controller;
 
 import gt.edu.umg.ingenieria.sistemas.laboratorio1.model.Client;
 import gt.edu.umg.ingenieria.sistemas.laboratorio1.service.ClientService;
 import gt.edu.umg.ingenieria.sistemas.laboratorio1.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import javax.servlet.ServletContext;
 import java.util.List;
 /**
  *
@@ -25,48 +25,52 @@ public class ClientController {
     }
 
     @GetMapping("/porid")
-    public Client gId(@RequestParam(name = "id") long id) {
-        return this._clientService.gClientId(id);
+    public Client gId(@RequestParam(name = "Id") long id) {
+        return this._clientService.gClienteId(id);
     }
 
     @GetMapping("/nitbuscar")
-    public Client gNit(@RequestParam(name = "nit") String nit) {
-        return this._clientService.gClientNit(nit);
+    public Client gNit(@RequestParam(name = "Nit") String nit) {
+        return this._clientService.gClienteNit(nit);
     }
 
     @GetMapping("/nombreapellidobuscar")
-    public List<Client> geNameLastName(@RequestParam(name = "query") String nameAndLastName) {
-        return this._clientService.gClientsNameLastName(nameAndLastName);
+    public List<Client> gNameLastName(@RequestParam(name = "query") String nameAndLastName) {
+        return this._clientService.gClientesNameLastName(nameAndLastName);
     }
 
-    @GetMapping("/buscarTodos")
+    @GetMapping("/buscartodos")
     private List<Client> getByAll() {
-        return this._clientService.getAllClients();
+        return this._clientService.gClientes();
     }
 
     @PostMapping("/creaCliente")
     public Object crea(@RequestBody Client client) {
-        return this._clientService.creaClient(client);
+        return this._clientService.creaCliente(client);
     }
 
-    @PutMapping("/editarCliente/{id}/{nit}")
+    @PutMapping("/editar/{id}/{nit}")
     public Client uNit(@PathVariable long id, @PathVariable String nit) {
         Client client = gId(id);
         client.setNit(nit);
-        return this._clientService.uClient(client);
+        return this._clientService.uCliente(client);
     }
 
-    @PutMapping("/editarCliente/{id}/{name}/{lastName}")
-    public Client updateNameAndLastName(@PathVariable long id, @PathVariable String name, @PathVariable String lastName) {
+    @PutMapping("/editar/{id}/{name}/{lastName}")
+    public Client uNameLastName(@PathVariable long id, @PathVariable String name, @PathVariable String lastName) {
         Client client = gId(id);
         client.setFirstName(name);
         client.setLastName(lastName);
-        return this._clientService.uClient(client);
+        return this._clientService.uCliente(client);
     }
 
-    @GetMapping("/generarReporteClientes")
-    public String generateReport() {
-        return this._reportService.generateReport();
-    }
+
+
+    //@GetMapping("/generarReporteClientes")
+    //public String generateReport() {
+       // return this._reportService.generateReport(this._clientService.gClientes(), _servletContext);
+    //}
+
+
 
 }
