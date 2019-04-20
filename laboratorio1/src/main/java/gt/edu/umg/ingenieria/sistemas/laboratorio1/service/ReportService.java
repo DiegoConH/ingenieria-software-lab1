@@ -26,7 +26,7 @@ import java.util.stream.Stream;
  */
 @Service
 public class ReportService {
-    public String generateReport(List<Client> clientList, ServletContext servletContext) {
+    public String generaReporte(List<Client> clientList, ServletContext servletContext) {
 
         String serverPath = servletContext.getRealPath("/");
         String directory = "var/wwww";
@@ -111,5 +111,7 @@ public class ReportService {
             return "error";
         }
 
-        return "El reporte " + fileName + " ha sido generado.";
-    }}
+        return "Reporte " + fileName + " generado.";
+    }
+//diego
+}

@@ -69,8 +69,8 @@ public class ClientController {
 
 
     @GetMapping("/generarReporteClientes")
-    public String generateReport() {
-       return this._reportService.generateReport(this._clientService.gClientes(), _servletContext);
+    public String generaReporte() {
+       return this._reportService.generaReporte(this._clientService.gClientes(), _servletContext);
     }
         //diego
 

@@ -12,7 +12,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Client implements Serializable {
-
+//diego
     @Id
     private Long id;
     private String firstName;
