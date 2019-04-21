@@ -27,7 +27,7 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public Client gClienteNit (String nit) {
+    public Client buscarNit (String nit) {
         List<Client> clients = gClientes();
         return clients.stream()
                 .filter(client -> Objects.equals(client.getNit(), nit))
@@ -54,8 +54,8 @@ public class ClientService {
         return (List<Client>) this.clientRepository.findAll();
     }
 
-    public Object creaCliente(Client client) {
-        String msg = "Usuario menor de edad.";
+    public Object crea(Client client) {
+        String msg = "No se permitira el registro de clientes menores de edad.";
         if(!Helpers.isOverOrEqualsNYears(client.getBirthday(), 18)){
             try {
                 throw new Exception(msg);
@@ -69,7 +69,7 @@ public class ClientService {
                 throw new Exception(msg);
             } catch (Exception e) {
                 e.printStackTrace();
-                return new Error(msg, "Nit invalido");
+                return new Error(msg, "Nit invalido o es de diferente longitud a 10");
             }
         } else {
             client.setFirstName(
