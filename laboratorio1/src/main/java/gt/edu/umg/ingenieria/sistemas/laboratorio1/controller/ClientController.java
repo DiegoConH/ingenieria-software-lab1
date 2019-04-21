@@ -27,17 +27,17 @@ public class ClientController {
     }
 
     @GetMapping("/porid")
-    public Client gId(@RequestParam(name = "Id") long id) {
+    public Client buscarId(@RequestParam(name = "Id") long id) {
         return this._clientService.gClienteId(id);
     }
 
-    @GetMapping("/nitbuscar")
-    public Client gNit(@RequestParam(name = "Nit") String nit) {
+    @GetMapping("/buscarpornit")
+    public Client buscarNit(@RequestParam(name = "Nit") String nit) {
         return this._clientService.gClienteNit(nit);
     }
 
-    @GetMapping("/nombreapellidobuscar")
-    public List<Client> gNameLastName(@RequestParam(name = "query") String nameAndLastName) {
+    @GetMapping("/buscarpornombreapellido")
+    public List<Client> buscarnombreapellido(@RequestParam(name = "query") String nameAndLastName) {
         return this._clientService.gClientesNameLastName(nameAndLastName);
     }
 
@@ -46,21 +46,21 @@ public class ClientController {
         return this._clientService.gClientes();
     }
 
-    @PostMapping("/creaCliente")
+    @PostMapping("/crearcliente")
     public Object crea(@RequestBody Client client) {
         return this._clientService.creaCliente(client);
     }
 
     @PutMapping("/editar/{id}/{nit}")
     public Client uNit(@PathVariable long id, @PathVariable String nit) {
-        Client client = gId(id);
+        Client client = buscarId(id);
         client.setNit(nit);
         return this._clientService.uCliente(client);
     }
 
-    @PutMapping("/editar/{id}/{name}/{lastName}")
+    @PutMapping("/editarcliente/{id}/{name}/{lastName}")
     public Client uNameLastName(@PathVariable long id, @PathVariable String name, @PathVariable String lastName) {
-        Client client = gId(id);
+        Client client = buscarId(id);
         client.setFirstName(name);
         client.setLastName(lastName);
         return this._clientService.uCliente(client);
@@ -68,7 +68,7 @@ public class ClientController {
 
 
 
-    @GetMapping("/generarReporteClientes")
+    @GetMapping("/generarreporteclientes")
     public String generaReporte() {
        return this._reportService.generaReporte(this._clientService.gClientes(), _servletContext);
     }
