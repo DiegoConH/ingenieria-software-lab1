@@ -33,7 +33,7 @@ public class ClientController {
 
     @GetMapping("/buscarpornit")
     public Client buscarNit(@RequestParam(name = "Nit") String nit) {
-        return this._clientService.gClienteNit(nit);
+        return this._clientService.buscarNit(nit);
     }
 
     @GetMapping("/buscarpornombreapellido")
@@ -47,8 +47,8 @@ public class ClientController {
     }
 
     @PostMapping("/crearcliente")
-    public Object crea(@RequestBody Client client) {
-        return this._clientService.creaCliente(client);
+    public Object crear(@RequestBody Client client) {
+        return this._clientService.crea(client);
     }
 
     @PutMapping("/editar/{id}/{nit}")
