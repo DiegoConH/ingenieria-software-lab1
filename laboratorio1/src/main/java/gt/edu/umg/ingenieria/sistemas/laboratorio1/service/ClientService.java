@@ -85,10 +85,5 @@ public class ClientService {
     public Client uCliente(Client client) {
         return this.clientRepository.save(client);
     }
-
-
-
-
-
-//viejo
+//merge
 }
